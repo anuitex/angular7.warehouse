@@ -1,0 +1,10 @@
+<div class="" *ngIf="book">
+    <h2 class="">{{ book.name }}</h2>
+    <div class="container-img">
+        <img (error)="updateUrl()" [src]="book.img" alt="img">
+    </div>
+    <h2>Description: </h2>
+    <p>{{ book.description }}</p>
+    <h2>Authors: </h2>
+    <span class="authors" *ngFor="let item of book.author">{{ item.name }} </span>
+</div>

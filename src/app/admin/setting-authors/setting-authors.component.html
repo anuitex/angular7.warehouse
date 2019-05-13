@@ -1,0 +1,25 @@
+<h2 class="name-page">Setting authors</h2>
+<div class="edit-book" *ngIf="book">
+    <div class="edit">
+        <h3>Authors:</h3>
+        <div class="input-group mb-3">
+            <form id="add-author" [formGroup]="addAuthorForm">
+                <div class="input-group mb-3">
+                    <input name="name" formControlName="name" type="text" class="form-control"
+                        placeholder="enter new author" aria-label="Recipient's username"
+                        aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button form="add-author" class="btn btn-outline-secondary" type="button"
+                            (click)="addAuthor()">Create New Author</button>
+                    </div>
+                </div>
+                <div *ngFor="let option of authors | orderBy: 'name'; let i = index ">
+                    <span class="option">{{ option.name }}
+                        <span class="close" (click)="removeFromSelect($event, option.id, i)">&times;</span>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<span *ngIf="!book">Please wait</span>

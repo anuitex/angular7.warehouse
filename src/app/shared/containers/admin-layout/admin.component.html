@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="jumbotron">
+    <div class="container">
+        <div class="column">
+            <nav class="navbar navbar-light nav-admin-edit">
+                <a class="option-admin btn btn-outline-primary" routerLink="/admin/edit-users" routerLinkActive="active">Edit Users</a>
+                <a class="option-admin btn btn-outline-primary" routerLink="/admin/setting" routerLinkActive="active">Edit Library</a>
+                <a class="option-admin btn btn-outline-primary" routerLink="/admin/edit-authors" routerLinkActive="active">Edit Authors</a>
+            </nav>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

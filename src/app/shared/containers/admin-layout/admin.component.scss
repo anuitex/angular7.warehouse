@@ -1,0 +1,14 @@
+:host {
+    width: 100%;
+    .edit-book {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .nav-admin-edit {
+        display: inherit;
+        .option-admin {
+            margin: 0 5px 0 0;
+        }
+    }
+}

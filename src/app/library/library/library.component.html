@@ -1,0 +1,30 @@
+<div class="library">
+        <div class="library-search">
+                <div class="form-group item-serach md-form mt-0">
+                    <label><input class="form-control item-serach" type="text" (keyup)="searchEvent($event)" placeholder="Search" aria-label="Search"></label>
+                </div>
+                <div class="form-group item-serach">
+                    <div class="filter-name">Filter by type books</div>
+                    <select class="form-control" (change)="checkTypeSelected($event)">
+                            <option [value]="type.all">{{ type.all }}</option>
+                        <option [value]="type.book">{{ type.book }}</option>
+                        <option [value]="type.magazine">{{ type.magazine }}</option>
+                    </select>
+                </div>
+                <div class="filter-name">Filter by authors</div>
+                <app-drop-down-authors class="form-group item-serach" (onChanged)="onChanged($event)"></app-drop-down-authors>
+            </div>
+    <div class="books">
+        <pagination-controls *ngIf="!searchingStatus" (pageChange)="changeCurrentPage($event)" (pageChange)="p = $event"></pagination-controls>
+        <div class="books-container">
+            <div class="book"
+                *ngFor="let item of books | paginate: { itemsPerPage: 12, currentPage: p, totalItems: totalCountBooks }; let i = index">
+                <div class="book-item" (click)="selectBook(i)">
+                    <a>{{ item.name }}</a>
+                    <span>{{ item.description | descriptionCut }}</span>
+                    <img (error)="updateUrl(item)" [src]="item.img" alt="img">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

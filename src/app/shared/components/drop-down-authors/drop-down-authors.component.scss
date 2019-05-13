@@ -1,0 +1,14 @@
+
+.drop-option-container {
+    display: flex;
+    .drop-option {
+        display: flex;
+        flex-wrap: wrap;
+        width: 60%;
+        margin: 0 15px 0 0;
+    }
+    .delete-option {
+        display: flex;
+        color: red;
+    }
+}

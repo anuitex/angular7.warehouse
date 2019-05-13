@@ -1,0 +1,16 @@
+<div class="input-group mb-3">
+    <form class="w-100" id="add-author-helper" [formGroup]="addAuthorForm">
+        <div class="col-auto my-1" (click)="onSelect($event)" class="select">
+            <div class="custom-select mr-sm-2" (click)="onClickDropMenu()">{{ newAuthor.name }}</div>
+            <div class="drop-menu" *ngIf="dropMenuToggle">
+                <div *ngFor="let option of authors | orderBy: 'name'; let i = index ">
+                    <span class="option" (click)="selectedOption(i)">{{ option.name }}</span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="drop-option-container" *ngFor="let option of selectedAuthors; let i = index ">
+    <span class="drop-option">{{ option  | descriptionCut }}</span>
+    <a class="drop-option delete-option" (click)="removeAuthor(option, i)">Delete &times;</a>
+</div>

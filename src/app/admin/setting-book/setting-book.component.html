@@ -1,0 +1,67 @@
+<h2 class="name-page w-50">{{ title }}</h2>
+<div class="edit-book" *ngIf="book">
+    <div class="edit w-50">
+        <div class="error" *ngIf="notAllInputFilled">All field requered</div>
+        <form id="edit-user-form" [formGroup]="editFormGroup" class="edit-users">
+            <label for="name">Name<input class="input-group input-group-sm mb-3" id="name" name="name" type="text"
+                    formControlName="name" [value]="book.name"></label>
+            <div class="form-group">
+                <label for="img">Img</label>
+                <div class="panel panel-default">
+                        <div class="book-item panel-body" *ngIf="book.img" >
+                            <span>Pre view image:</span>
+                            <img [src]="book.img" alt="#">
+                        </div>
+                      </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01"
+                            (change)="onFileChange($event)"  accept=".jpg, .jpeg, .png" #fileInput>
+                
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-sm" (click)="clearFile()">Clear file</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <textarea formControlName="description" class="form-control" aria-label="With textarea"
+                    [value]="book.description"></textarea>
+            </div>
+            <div class="form-group">
+                <span>Type of</span>
+                <select class="custom-select mr-sm-2" formControlName="type">
+                    <option [value]="type.book">{{ type.book }}</option>
+                    <option [value]="type.magazine">{{ type.magazine }}</option>
+                </select>
+            </div>
+        </form>
+        <span>Authors:</span>
+        <div class="input-group mb-3">
+            <form class="w-100" id="add-author" [formGroup]="addAuthorForm">
+                <div class="col-auto my-1" (click)="onSelect($event)" class="select">
+                    <div class="custom-select mr-sm-2" (click)="onClickDropMenu()">{{ newAuthor.name }}</div>
+                    <div class="drop-menu" *ngIf="dropMenuToggle">
+                        <div *ngFor="let option of authors | orderBy: 'name'; let i = index ">
+                            <span class="option" (click)="selectedOption(i)">{{ option.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div *ngFor="let item of book.author; let i = index">
+            <button type="button" class="close" aria-label="Close" (click)="removeAuthor(item, i)">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <span>{{ item.name }}</span>
+        </div>
+        <div class="btn-block-form-send">
+            <button (click)="saveEditForm()" class="btn btn-primary" form="edit-user-form">Save</button>
+            <button (click)="backToPrevPage()" class="btn btn-secondary" form="edit-user-form">Back</button>
+        </div>
+    </div>
+</div>
+
+<span *ngIf="!book">Please wait</span>

@@ -1,0 +1,23 @@
+:host {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        label {
+            width: 100%;
+        }
+    }
+    .btn-block-form-send {
+        display: flex;
+        justify-content: space-around;
+      }
+      button {
+        width: 40%;
+      }
+  .error {
+    color: red;
+  }
+}

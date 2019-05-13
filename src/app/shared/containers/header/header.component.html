@@ -1,0 +1,12 @@
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" (click)="navigateToLibrary()" routerLinkActive="active-link">Home</a>
+      <a class="nav-item nav-link" (click)="navigateToAdmin()" *ngIf="isAdmin" routerLinkActive="active-link">Admin</a>
+      <a class="nav-item nav-link" (click)="navigateToUserProfile()" routerLinkActive="active-link">Profile</a>
+    </div>
+    <div class="user-info navbar-nav">
+      <span class="nav-item nav-link"  (click)="navigateToUserProfile()">HI! {{ currentUser.username }}</span>
+      <a class="nav-item nav-link btn btn-danger"  (click)="logout()">Logout</a>
+    </div>
+</nav>

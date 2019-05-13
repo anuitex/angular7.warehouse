@@ -1,0 +1,33 @@
+﻿<a routerLink="/admin/edit-users/add-new-user" type="button" class="add-option btn btn-success">Add new user</a>
+<pagination-controls (pageChange)="changeCurrentPage($event)" (pageChange)="p = $event"></pagination-controls>
+<h3>All registered users:</h3>
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Role</th>
+            <th>Edit/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p, totalItems: countTotalUsers }; let i = index">
+            <td>{{user.username}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.role}}</td>
+            <td><a (click)="editUser(i)" class="text-primary">Edit</a>
+                - <a class="text-danger" (click)="selectedId(user.id)" (click)="ngxSmartModalService.getModal('deleteUserPopap').open()">Delete</a></td>
+        </tr>
+    </tbody>
+</table>
+
+
+<ngx-smart-modal #deleteUserPopap identifier="deleteUserPopap">
+    <h1>Deleted User</h1>
+    <p>Are you sure??</p>
+    <button class="btn btn-danger" (click)="deleteUser(deleteUserPopap.getData())" (click)="deleteUserPopap.close()">Delete</button>
+    <button class="btn btn-light" (click)="deleteUserPopap.close()">Cancel</button>
+</ngx-smart-modal>

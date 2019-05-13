@@ -1,0 +1,56 @@
+<div class="main-container">
+        <h2>Edit Profile</h2>
+        <span *ngIf="!user">Please wait</span>
+        <div *ngIf="user">
+                <form id="edit-user-form" [formGroup]="editFormGroup" class="edit-users">
+                        <div class="form-group">
+                                <label for="username">Username<input class="form-control" id="username" name="username"
+                                                type="text" formControlName="username" [value]="user.username"></label>
+                                                <span class="error">{{ errorMessage }}</span>
+                                <span class="error" *ngIf="editFormGroup.get('username').touched && editFormGroup.get('username').invalid">Username have to min 6 symbol, max 18 symbol and only latin letters and numbers </span>
+                        </div>
+                        <div class="form-group">
+                                <label for="firstName">First Name<input class="form-control" id="firstName"
+                                                name="firstName" type="text" formControlName="firstName"
+                                                [value]="user.firstName"></label>
+                                <span class="error" *ngIf="editFormGroup.get('firstName').touched && editFormGroup.get('firstName').invalid">FirstName have to min 2 symbol, max 18 symbol and only latin letters </span>
+
+                        </div>
+                        <div class="form-group">
+                                <label for="lastName">Last Name<input class="form-control" id="lastName" name="lastName"
+                                                type="text" formControlName="lastName" [value]="user.lastName"></label>
+                                <span class="error" *ngIf="editFormGroup.get('lastName').touched && editFormGroup.get('lastName').invalid">Last Name have to min 2 symbol, max 18 symbol and only latin letters </span>
+
+                        </div>
+                        <div *ngIf="isCurrentUserAdmin" class="form-group">
+                                <label for="role">Select your role</label>
+                                <select class="form-control" name="role" id="role" formControlName="role">
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
+                                </select>
+                        </div>
+                </form>
+          <div *ngIf="isPageProfile">
+            <button (click)="editPassword()" class="btn btn-outline-dark" form="edit-user-form">Edit Password</button>
+            <div *ngIf="editPass">
+              <form id="edit-password-form" [formGroup]="editPasswordForm" class="edit-users">
+                <div class="form-group">
+                  <label for="currentPassword">Current Password<input id="currentPassword" class="form-control" name="currentPassword"
+                                                       type="text" formControlName="currentPassword"></label>
+                  <span class="error" *ngIf="editPasswordForm.get('currentPassword').touched && editPasswordForm.get('currentPassword').invalid">
+Password have to min 6 symbol and max 18</span>
+                  <label for="newPassword">New Pawwsord<input id="newPassword" class="form-control" name="newPassword"
+                                                       type="text" formControlName="newPassword"></label>
+                  <span class="error" *ngIf="editPasswordForm.get('newPassword').touched && editPasswordForm.get('newPassword').invalid">Password have to min 6 symbol and max 18</span>
+                </div>
+              </form>
+              <button (click)="savePassword()" class="btn btn-outline-success" form="edit-user-form">Save Password</button>
+            </div>
+
+          </div>
+                <div class="btn-block-form-send">
+                        <button (click)="saveEditForm()" class="btn btn-primary" form="edit-user-form">Save</button>
+                        <button (click)="backToPrevPage()" class="btn btn-secondary" form="edit-user-form">Back</button>
+                </div>
+        </div>
+</div>
